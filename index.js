@@ -1,9 +1,17 @@
 const express = require('express');
 const bodyparser = require('body-parser');
 const {dbConnect} = require('./config/mongo.js')
+const cors = require('cors')
 require('dotenv').config()
 
 const app = express();
+
+//configuracion cors
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 //capturar body
 app.use(bodyparser.urlencoded({extended: false}));

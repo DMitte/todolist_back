@@ -20,8 +20,8 @@ const schemaLogin = Joi.object({
 })
 router.post('/register', async (req,res) =>{
     //validate user
-    const {error} = schemaRegister.validate(req.body);
-    if(error) return res.status(400).json({error: true, msg: err.detail[0].message})
+    const {err} = schemaRegister.validate(req.body);
+    if(err) return res.status(400).json({error: true, msg: err.detail[0].message})
 
     //email exist
     const isEmailExist = await User.findOne({email: req.body.email});
@@ -52,8 +52,8 @@ router.post('/register', async (req,res) =>{
 
 router.post('/login', async (req, res) =>{
     //Validaciones
-    const {error} = schemaLogin.validate(req.body);
-    if(error) return res.status(400).json({error: true, msg: error.details[0].message})
+    const {err} = schemaLogin.validate(req.body);
+    if(err) return res.status(400).json({error: true, msg: err.details[0].message})
 
     const user = await User.findOne({email: req.body.email})
     if(!user) return res.status(400).json({error: true, msg: 'Usuario no encontrado'})
