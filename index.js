@@ -27,7 +27,7 @@ const verifyToken = require('./app/helpers/validate-token')
 
 //route middlewares
 app.use('/api/user', authRoutes);
-app.use('/api/tareas',verifyToken, tareasRoutes)
+app.use('/api/task',verifyToken, tareasRoutes)
 app.get('/', (req,res) => {
     res.json({
         estado: true,
