@@ -70,13 +70,16 @@ router.delete("/delete/:idtask", async (req, res) => {
     try {
       await Task.findByIdAndDelete(idtask);
       res.status(200).json({
+        error: null,
         msg: "Tarea eliminada con exito!",
       });
     } catch (error) {
-      res.status(400).json({ msg: error });
+      res.status(400).json({ error: null, msg: error });
     }
   } else {
-    res.status(400).json({ msg: "Usuario sin acceso a esta accion" });
+    res
+      .status(400)
+      .json({ error: true, msg: "Usuario sin acceso a esta accion" });
   }
 });
 router.put("/update/:idtask", async (req, res) => {
