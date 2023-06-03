@@ -93,9 +93,9 @@ router.put("/update/:idtask", async (req, res) => {
   if (taskdb.idperson === userid) {
     try {
       await Task.findByIdAndUpdate(taskid, req.body);
-      res.status(200).json({ msg: "Tarea actualizada!" });
+      res.status(200).json({ error: null, msg: "Tarea actualizada!" });
     } catch (error) {
-      res.status(400).json({ msg: error });
+      res.status(400).json({ error: true, msg: error });
     }
   } else {
   }
